@@ -1,0 +1,31 @@
+# Ambiente LOCAL (desenvolvimento/demonstração). Na nuvem não se usa este arquivo:
+# lá o banco é um serviço gerenciado (RDS / Azure Database for PostgreSQL).
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_URL: postgresql://marque:${POSTGRES_PASSWORD:-marque_dev}@db:5432/marquefacil
+      SECRET_KEY: ${SECRET_KEY:-chave-local-apenas-para-desenvolvimento-0123456789}
+      SEED: "1" # cria médicos/pacientes/horários de exemplo se o banco estiver vazio
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: marque
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-marque_dev}
+      POSTGRES_DB: marquefacil
+    volumes:
+      - dados_pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U marque -d marquefacil"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  dados_pg:

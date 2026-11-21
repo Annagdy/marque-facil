@@ -1,0 +1,170 @@
+:root {
+  --fundo: #f2f7f7;
+  --card: #ffffff;
+  --texto: #14303a;
+  --suave: #5b7480;
+  --borda: #d9e5e8;
+  --primaria: #0f766e;
+  --primaria-escura: #115e59;
+  --primaria-clara: #d7f0ec;
+  --livre-bg: #dcfce7;
+  --livre-tx: #166534;
+  --ocupado-bg: #dbeafe;
+  --ocupado-tx: #1e40af;
+  --perigo: #b91c1c;
+  --perigo-bg: #fee2e2;
+  --aviso-bg: #e6f7ee;
+  --aviso-tx: #14532d;
+  --raio: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.45;
+}
+
+h1 {
+  font-size: 1.6rem;
+  margin: 0 0 4px;
+}
+h2 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 20px;
+}
+
+.sub,
+.muted {
+  color: var(--suave);
+  margin: 0;
+}
+
+/* ───────── botões ───────── */
+.btn {
+  appearance: none;
+  border: 1px solid var(--primaria);
+  background: var(--primaria);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 9px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.15s;
+}
+.btn:hover:not(:disabled) {
+  background: var(--primaria-escura);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn.ghost {
+  background: transparent;
+  color: var(--primaria);
+}
+.btn.ghost:hover:not(:disabled) {
+  background: var(--primaria-clara);
+}
+.btn.perigo {
+  background: transparent;
+  color: var(--perigo);
+  border-color: var(--perigo);
+}
+.btn.perigo:hover:not(:disabled) {
+  background: var(--perigo-bg);
+}
+.btn.small {
+  padding: 5px 11px;
+  font-size: 0.85rem;
+}
+
+/* ───────── formulários ───────── */
+label.campo {
+  display: block;
+  margin-bottom: 14px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+input,
+select {
+  font: inherit;
+  color: inherit;
+  padding: 9px 11px;
+  border: 1px solid var(--borda);
+  border-radius: 9px;
+  background: #fff;
+  width: 100%;
+}
+label.campo input,
+label.campo select {
+  display: block;
+  margin-top: 5px;
+  font-weight: 400;
+}
+input:focus,
+select:focus {
+  outline: 2px solid var(--primaria);
+  outline-offset: 0;
+  border-color: var(--primaria);
+}
+
+/* ───────── avisos ───────── */
+.alert {
+  padding: 10px 14px;
+  border-radius: 9px;
+  margin: 0 0 14px;
+  font-size: 0.95rem;
+}
+.alert.erro {
+  background: var(--perigo-bg);
+  color: var(--perigo);
+}
+.alert.ok {
+  background: var(--aviso-bg);
+  color: var(--aviso-tx);
+}
+
+/* ───────── telas de login/cadastro ───────── */
+.auth-card {
+  max-width: 440px;
+  margin: 32px auto;
+}
+.auth-card h1 {
+  margin-bottom: 18px;
+}
+.auth-card .rodape {
+  margin: 16px 0 0;
+  text-align: center;
+  color: var(--suave);
+  font-size: 0.95rem;
+}
+.auth-card a,
+.container a:not(.btn) {
+  color: var(--primaria);
+}
+.auth-card .btn {
+  width: 100%;
+  margin-top: 4px;
+}
